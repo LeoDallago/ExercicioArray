@@ -4,83 +4,89 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Exercicio Array");
+            Console.WriteLine("Exercicio Array\n");
 
-            int[] teste = [-5, 3, 4, 5, 9, 6, 10, -2, 11, 1, 2, 6, 7, 8, 0, -6];
+            int[] array = [-5, 3, 4, 5, 9, 6, 10, -2, 11, 1, 2, 6, 7, 8, 0, -6];
+
+            int[] cloneArray = (int[])array.Clone();
+
 
             int soma = 0;
-            ExibirNaTela(teste);
+            ExibirNaTela(array);
 
             Console.WriteLine(" ");
             Console.WriteLine("----------------------------");
 
-            ValoresMaiores(teste);
+            ValoresMaiores(array);
 
             Console.WriteLine("----------------------------");
 
-            ValoresMenores(teste);
+            ValoresMenores(array);
 
             Console.WriteLine("----------------------------");
 
-            soma = Media(teste, soma);
+            soma = Media(array, soma);
 
             Console.WriteLine("----------------------------");
-            teste = RemoverValor(teste);
+            array = RemoverValor(cloneArray);
 
             Console.ReadLine();
         }
 
-        private static void ExibirNaTela(int[] teste)
+        private static void ExibirNaTela(int[] array)
         {
-            for (int i = 0; i < teste.Length; i++)
+
+            foreach (var item in array)
             {
-                Console.Write(teste[i] + " ");
+                Console.Write($"{item} ");
             }
         }
 
-        private static void ValoresMaiores(int[] teste)
+        private static void ValoresMaiores(int[] array)
         {
-            System.Array.Sort(teste);
-            Console.WriteLine($"O maior valor eh {teste[15]}");
-            Console.WriteLine($"O tres maiores valores são {teste[15]} {teste[14]} {teste[13]} ");
+            Array.Sort(array);
+            Console.WriteLine($"O maior valor eh {array[15]}");
+            Console.WriteLine($"O tres maiores valores são {array[15]} {array[14]} {array[13]} ");
         }
 
-        private static void ValoresMenores(int[] teste)
+        private static void ValoresMenores(int[] array)
         {
-            System.Array.Reverse(teste);
-            Console.WriteLine($"O menor valor eh {teste[15]}");
-            Console.WriteLine($"os valores negativos são {teste[15]} {teste[14]} {teste[13]} ");
+            Array.Reverse(array);
+            Console.WriteLine($"O menor valor eh {array[15]}");
+            Console.WriteLine($"os valores negativos são {array[15]} {array[14]} {array[13]} ");
         }
 
-        private static int Media(int[] teste, int soma)
+        private static int Media(int[] array, int soma)
         {
-            for (int i = 0; i < teste.Length; i++)
+            for (int i = 0; i < array.Length; i++)
             {
-                soma = soma + teste[i];
+                soma = soma + array[i];
 
             }
-            Console.WriteLine($"A media da soma eh {soma / teste.Length}");
+            Console.WriteLine($"A media da soma eh {soma / array.Length}");
             return soma;
         }
 
-        private static int[] RemoverValor(int[] teste)
+        private static int[] RemoverValor(int[] array)
         {
             Console.WriteLine("informe o valor a ser removido: ");
             int remover = Convert.ToInt32(Console.ReadLine());
 
-            var lista = teste.ToList();
+            var lista = array.ToList();
             lista.Remove(remover);
-            teste = lista.ToArray();
+            array = lista.ToArray();
 
 
-            for (int i = 0; i < teste.Length; i++)
+            foreach (var item in array)
             {
-                Console.Write($"{teste[i]} ");
+                Console.Write($"{item} ");
             }
 
-            return teste;
+            // Array.ForEach(array, Console.Write); Outra opcao de exibicao
+
+            return array;
         }
 
-       
+
     }
 }
